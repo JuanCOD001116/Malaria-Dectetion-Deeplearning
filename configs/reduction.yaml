@@ -1,0 +1,28 @@
+seed: 42
+
+embeddings_dir: "data/embeddings"
+output_dir: "artifacts/metrics"
+figures_dir: "artifacts/figures"
+
+pca:
+  variance_threshold: 0.95   # componentes que explican 95% varianza
+  n_components_fixed: null   # si no null, usa este número fijo
+  whiten: false
+
+umap:
+  n_neighbors: 15
+  min_dist: 0.1
+  metric: "cosine"
+  low_memory: true
+  # Para visualización 2D:
+  n_components_viz: 2
+  # Para clasificación:
+  n_components_clf: [50, 100]
+
+feature_analysis:
+  top_k: 50    # top-k features discriminativas a plotear
+
+# Top-2 modelos a reevaluar (nombres deben coincidir con keys en classical.yaml)
+top_models:
+  - "logistic_regression"
+  - "svm"

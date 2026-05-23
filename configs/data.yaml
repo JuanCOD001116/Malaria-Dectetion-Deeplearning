@@ -1,0 +1,23 @@
+seed: 42
+img_size: 96
+
+# Rutas relativas a la raíz del repo
+dataset_root: "cell_images"
+processed_dir: "data/processed"
+embeddings_dir: "data/embeddings"
+
+# Split estratificado (proporciones deben sumar 1.0)
+split:
+  train: 0.70
+  val: 0.15
+  test: 0.15
+
+# Normalización ImageNet
+normalize:
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+
+# Clases
+classes:
+  Parasitized: 1
+  Uninfected: 0

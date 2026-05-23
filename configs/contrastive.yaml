@@ -1,0 +1,58 @@
+seed: 42
+
+# Arquitectura del encoder
+encoder:
+  embedding_dim: 1024   # dimensión del embedding final (downstream)
+  proj_dim: 128         # dimensión de la proj_head (solo para la pérdida)
+  pretrained: true      # usar ResNet18 preentrenado en ImageNet
+  backbone: "resnet18"
+
+# SupCon Loss
+loss:
+  temperature: 0.07     # τ — estándar en SupCon paper
+
+# Optimizador
+optimizer:
+  name: "adamw"
+  lr: 0.001
+  weight_decay: 0.0001
+
+# Scheduler
+scheduler:
+  name: "cosine"
+  eta_min: 0.00001
+
+# Entrenamiento
+training:
+  epochs: 30
+  # batch_size se ajusta automáticamente según dispositivo:
+  # GPU (>=4GB): 256 | GPU (<4GB): 128 | CPU: 32
+  batch_size_gpu: 256
+  batch_size_cpu: 32
+  num_workers: 4        # reducir a 0 en Windows si hay errores de multiprocessing
+  pin_memory: true
+  early_stopping_patience: 7
+
+# Augmentations contrastivas
+augmentations:
+  img_size: 96
+  crop_scale_min: 0.7
+  crop_scale_max: 1.0
+  h_flip_prob: 0.5
+  v_flip_prob: 0.5
+  rotation_degrees: 15
+  color_jitter:
+    brightness: 0.2
+    contrast: 0.2
+    saturation: 0.2
+    hue: 0.0
+  blur_prob: 0.3
+  blur_sigma_min: 0.1
+  blur_sigma_max: 1.0
+
+# Rutas de salida
+output:
+  checkpoint_dir: "artifacts/checkpoints"
+  log_dir: "artifacts/logs"
+  best_model_name: "encoder_best.pt"
+  last_model_name: "encoder_last.pt"

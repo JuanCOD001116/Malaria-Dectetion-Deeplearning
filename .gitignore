@@ -1,0 +1,57 @@
+# Dataset (demasiado grande para git)
+/cell_images/
+/data/raw/
+/data/embeddings/
+
+# Artefactos de entrenamiento
+/artifacts/checkpoints/
+/artifacts/logs/
+
+# Splits CSV sí se commitean (garantizan reproducibilidad)
+# data/processed/ → incluido en git
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+.env
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Checkpoints de modelos grandes
+*.pt
+*.pth
+*.ckpt
+*.pkl
+
+# Archivos temporales
+*.tmp
+*.log
+tmp/
