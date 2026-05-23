@@ -18,7 +18,7 @@ models:
       max_iter: 2000
       multi_class: "auto"
     grid:
-      C: [0.01, 0.1, 1.0, 10.0]
+      C: [0.1, 1.0, 10.0]
       penalty: ["l2"]
 
   knn:
@@ -26,7 +26,7 @@ models:
     class: "sklearn.neighbors.KNeighborsClassifier"
     fixed_params: {}
     grid:
-      n_neighbors: [3, 5, 7, 11, 21]
+      n_neighbors: [5, 7, 11]
       weights: ["uniform", "distance"]
       metric: ["euclidean", "cosine"]
 
