@@ -24,7 +24,7 @@ scheduler:
 
 # Entrenamiento
 training:
-  epochs: 30
+  epochs: 20
   # batch_size se ajusta automáticamente según dispositivo:
   # GPU (>=4GB): 256 | GPU (<4GB): 128 | CPU: 32
   batch_size_gpu: 256
