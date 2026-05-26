@@ -1,12 +1,94 @@
 # Guía de Ejecución Detallada + Sincronización Colab-VSCode
 
 ## Índice
+0. [Ejecución 100% en Colab (recomendado para reporte IEEE)](#0-ejecución-100-en-colab-recomendado-para-reporte-ieee)
 1. [Setup inicial](#1-setup-inicial)
 2. [Flujo completo local (CPU)](#2-flujo-completo-local-cpu)
 3. [Flujo con Colab para entrenamiento GPU](#3-flujo-con-colab-para-entrenamiento-gpu)
 4. [Sincronización Colab ↔ VSCode / GitHub](#4-sincronización-colab--vscode--github)
 5. [Ejecutar notebooks en GitHub con outputs](#5-ejecutar-notebooks-en-github-con-outputs)
 6. [Solución de problemas comunes](#6-solución-de-problemas-comunes)
+
+---
+
+## 0. Ejecución 100% en Colab (recomendado para reporte IEEE)
+
+Los 6 notebooks ya están adaptados para ejecutarse end-to-end en Colab. Cada uno:
+- Auto-detecta el entorno (local vs Colab) y ejecuta el setup que corresponda
+- Persiste artefactos pesados (`encoder_best.pt`, embeddings `.npy`, `classical_models.pkl`) en Google Drive
+- Hace `git push` automático del notebook ejecutado + figuras/métricas/logs a GitHub
+
+### Pre-requisitos (una sola vez, ~10 min)
+
+#### A. Personal Access Token de GitHub
+1. Ir a https://github.com/settings/tokens → **Generate new token (classic)**
+2. Marcar scope `repo`
+3. Copiar el token (`ghp_...`)
+
+#### B. API token de Kaggle
+1. https://www.kaggle.com/settings → **Create New API Token**
+2. Guardar el `kaggle.json` descargado
+
+#### C. Configurar Colab Secrets
+En cualquier notebook abierto en Colab: **🔑 Secrets** (panel izquierdo) → agregar:
+
+| Nombre | Valor |
+|---|---|
+| `GITHUB_TOKEN` | el token del paso A (`ghp_...`) |
+| `GITHUB_USER` | tu usuario de GitHub (ej. `JuanCOD001116`) |
+| `GITHUB_EMAIL` | tu email del git config |
+
+> Marca **Notebook Access: ON** para los tres. Los secrets se guardan a nivel de cuenta Google y persisten entre sesiones.
+
+#### D. Estructura en Drive (se crea automáticamente)
+
+```
+/content/drive/MyDrive/malaria_project/
+├── kaggle.json                          # cacheado tras el primer NB01
+├── checkpoints/
+│   ├── encoder_best.pt                  # NB02
+│   ├── encoder_last.pt                  # NB02
+│   └── classical_models.pkl             # NB04
+└── embeddings/
+    ├── train_X.npy, train_y.npy         # NB03
+    ├── val_X.npy, val_y.npy
+    └── test_X.npy, test_y.npy
+```
+
+### Orden de ejecución
+
+Cada notebook se abre desde **File → Open notebook → GitHub** → URL del repo → seleccionar el `.ipynb`.
+
+| Paso | Notebook | Runtime | Duración | Output principal |
+|---|---|---|---|---|
+| 1 | `01_eda.ipynb` | CPU | ~5 min | splits CSV + 6 figuras EDA |
+| 2 | `02_contrastive_training.ipynb` | **T4 GPU** | ~20-30 min | `encoder_best.pt` → Drive |
+| 3 | `03_extract_embeddings.ipynb` | T4 o CPU | ~5 min | 6 archivos `.npy` → Drive |
+| 4 | `04_classical_models.ipynb` | CPU | ~10-15 min | 5 JSON + `classical_models.pkl` |
+| 5 | `05_reduction_and_similarity.ipynb` | CPU | ~10 min | figuras UMAP + reevaluación |
+| 6 | `06_final_evaluation.ipynb` | CPU | ~1 min | tabla comparativa + LaTeX |
+
+**Total: ~1 hora** la primera vez (incluye descarga del dataset).
+
+Para cada notebook:
+1. Abrir en Colab desde GitHub
+2. **Runtime → Change runtime type** según la tabla
+3. **Runtime → Run all**
+4. La primera celda pide autorizar Drive y (NB01) subir `kaggle.json`
+5. La última celda hace `git push` automático con outputs
+
+### Verificación final
+
+- En GitHub: los 6 `notebooks/*.ipynb` muestran outputs al abrirlos en el browser.
+- `artifacts/figures/` tiene ~15 PNG; `artifacts/metrics/` tiene ~7 JSON + 1 CSV.
+- En Drive: `checkpoints/` ~75 MB, `embeddings/` ~375 MB.
+
+### Reanudar tras desconexión de Colab
+
+Si Colab desconecta a mitad de un notebook:
+1. Vuelve a abrir el mismo notebook en Colab
+2. **Runtime → Run all** → el setup detecta que el repo/Drive ya existen y solo hace `git pull` + remonta Drive
+3. Los artefactos ya generados (en Drive) se reutilizan sin reentrenar
 
 ---
 
