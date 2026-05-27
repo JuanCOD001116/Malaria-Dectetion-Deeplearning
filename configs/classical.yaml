@@ -6,7 +6,7 @@ output_dir: "artifacts/metrics"
 figures_dir: "artifacts/figures"
 
 # CV interna para GridSearch (sobre train+val)
-cv_folds: 5
+cv_folds: 3
 
 # Modelos y sus grids de hiperparámetros
 models:
@@ -15,10 +15,10 @@ models:
     class: "sklearn.linear_model.LogisticRegression"
     fixed_params:
       solver: "lbfgs"
-      max_iter: 2000
+      max_iter: 1000
       multi_class: "auto"
     grid:
-      C: [0.1, 1.0, 10.0]
+      C: [0.1, 1.0]
       penalty: ["l2"]
 
   knn:
@@ -26,45 +26,45 @@ models:
     class: "sklearn.neighbors.KNeighborsClassifier"
     fixed_params: {}
     grid:
-      n_neighbors: [5, 7, 11]
-      weights: ["uniform", "distance"]
-      metric: ["euclidean", "cosine"]
+      n_neighbors: [5, 11]
+      weights: ["uniform"]
+      metric: ["cosine"]
 
   random_forest:
     enabled: true
     class: "sklearn.ensemble.RandomForestClassifier"
     fixed_params:
-      n_jobs: -1
+      n_jobs: 1
     grid:
-      n_estimators: [200, 500]
-      max_depth: [null, 10, 20]
+      n_estimators: [100]
+      max_depth: [10, 20]
       min_samples_leaf: [1, 2]
 
   mlp:
     enabled: true
     class: "sklearn.neural_network.MLPClassifier"
     fixed_params:
-      max_iter: 500
+      max_iter: 200
       early_stopping: true
       validation_fraction: 0.1
     grid:
-      hidden_layer_sizes: [[256], [512, 128]]
-      learning_rate_init: [0.001, 0.0001]
-      alpha: [0.0001, 0.001]
+      hidden_layer_sizes: [[256]]
+      learning_rate_init: [0.001]
+      alpha: [0.0001]
 
   svm:
     enabled: true
     class: "sklearn.svm.SVC"
     fixed_params:
-      probability: true
-      cache_size: 2000
+      probability: false
+      cache_size: 1000
     grid:
-      C: [0.1, 1.0, 10.0]
-      kernel: ["rbf", "linear"]
-      gamma: ["scale", "auto"]
+      C: [0.1, 1.0]
+      kernel: ["linear"]
+      gamma: ["scale"]
 
 # Bootstrap para CI
 bootstrap:
-  n_resamples: 1000
+  n_resamples: 200
   confidence_level: 0.95
   random_state: 42
