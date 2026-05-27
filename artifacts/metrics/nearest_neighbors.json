@@ -1,0 +1,188 @@
+[
+  {
+    "query_idx": 2740,
+    "query_label": 0,
+    "neighbors": [
+      {
+        "idx": 3812,
+        "label": 0,
+        "similarity": 0.9999682903289795
+      },
+      {
+        "idx": 770,
+        "label": 0,
+        "similarity": 0.9999332427978516
+      },
+      {
+        "idx": 3016,
+        "label": 0,
+        "similarity": 0.9999325275421143
+      },
+      {
+        "idx": 264,
+        "label": 1,
+        "similarity": 0.999904215335846
+      },
+      {
+        "idx": 2525,
+        "label": 0,
+        "similarity": 0.9998972415924072
+      }
+    ]
+  },
+  {
+    "query_idx": 391,
+    "query_label": 0,
+    "neighbors": [
+      {
+        "idx": 834,
+        "label": 0,
+        "similarity": 0.9990111589431763
+      },
+      {
+        "idx": 1473,
+        "label": 0,
+        "similarity": 0.9985468983650208
+      },
+      {
+        "idx": 2974,
+        "label": 0,
+        "similarity": 0.9978710412979126
+      },
+      {
+        "idx": 597,
+        "label": 1,
+        "similarity": 0.9962520599365234
+      },
+      {
+        "idx": 33,
+        "label": 1,
+        "similarity": 0.9958687424659729
+      }
+    ]
+  },
+  {
+    "query_idx": 3227,
+    "query_label": 0,
+    "neighbors": [
+      {
+        "idx": 2814,
+        "label": 0,
+        "similarity": 0.9999631643295288
+      },
+      {
+        "idx": 3888,
+        "label": 0,
+        "similarity": 0.9999618530273438
+      },
+      {
+        "idx": 3923,
+        "label": 0,
+        "similarity": 0.9999590516090393
+      },
+      {
+        "idx": 2027,
+        "label": 0,
+        "similarity": 0.9999581575393677
+      },
+      {
+        "idx": 3082,
+        "label": 0,
+        "similarity": 0.9999571442604065
+      }
+    ]
+  },
+  {
+    "query_idx": 342,
+    "query_label": 1,
+    "neighbors": [
+      {
+        "idx": 2986,
+        "label": 0,
+        "similarity": 0.9997713565826416
+      },
+      {
+        "idx": 2879,
+        "label": 0,
+        "similarity": 0.9995943903923035
+      },
+      {
+        "idx": 2129,
+        "label": 0,
+        "similarity": 0.9995771646499634
+      },
+      {
+        "idx": 2081,
+        "label": 0,
+        "similarity": 0.9995405077934265
+      },
+      {
+        "idx": 1859,
+        "label": 0,
+        "similarity": 0.9995404481887817
+      }
+    ]
+  },
+  {
+    "query_idx": 2836,
+    "query_label": 1,
+    "neighbors": [
+      {
+        "idx": 2536,
+        "label": 1,
+        "similarity": 0.9998942613601685
+      },
+      {
+        "idx": 2211,
+        "label": 1,
+        "similarity": 0.9993596076965332
+      },
+      {
+        "idx": 1271,
+        "label": 1,
+        "similarity": 0.9992023706436157
+      },
+      {
+        "idx": 734,
+        "label": 1,
+        "similarity": 0.9991733431816101
+      },
+      {
+        "idx": 1076,
+        "label": 1,
+        "similarity": 0.9990875720977783
+      }
+    ]
+  },
+  {
+    "query_idx": 3523,
+    "query_label": 1,
+    "neighbors": [
+      {
+        "idx": 2249,
+        "label": 0,
+        "similarity": 0.9998816847801208
+      },
+      {
+        "idx": 1149,
+        "label": 0,
+        "similarity": 0.9997119307518005
+      },
+      {
+        "idx": 3640,
+        "label": 0,
+        "similarity": 0.9996658563613892
+      },
+      {
+        "idx": 2704,
+        "label": 0,
+        "similarity": 0.9995672106742859
+      },
+      {
+        "idx": 4130,
+        "label": 0,
+        "similarity": 0.9994932413101196
+      }
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "logistic_regression": {
+    "original_1024d": 0.9698,
+    "pca_4d": 0.9703
+  },
+  "svm": {
+    "original_1024d": 0.9703,
+    "pca_4d": 0.9703
+  }
+}
