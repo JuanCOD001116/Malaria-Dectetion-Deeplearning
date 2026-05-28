@@ -1,5 +1,7 @@
 # Malaria Detection — Contrastive Learning + Modelos Clásicos
 
+**URL DEL VIDEO DE EXPLICACION:** [LINK DEL VIDEO VIDEO](https://youtu.be/tsSfXmz2XoQ)
+
 Clasificación binaria de imágenes de células de malaria (*Parasitized* vs *Uninfected*) en dos fases:
 
 1. **Encoder ResNet18** entrenado con **Supervised Contrastive Learning (SupCon)** → embeddings de 1024 dimensiones.
